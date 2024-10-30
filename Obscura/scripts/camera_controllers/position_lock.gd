@@ -38,12 +38,6 @@ func draw_logic() -> void:
 	immediate_mesh.surface_add_vertex(Vector3(0,0,2.5))
 	immediate_mesh.surface_add_vertex(Vector3(0,0,-2.5))
 	
-	#immediate_mesh.surface_add_vertex(Vector3(0,-2.5,0))
-	#immediate_mesh.surface_add_vertex(Vector3(-2.5, 0, 0))
-	#
-	#immediate_mesh.surface_add_vertex(Vector3(0,0,-2.5))
-	#immediate_mesh.surface_add_vertex(Vector3(0, 0, 2.5))
-	
 	immediate_mesh.surface_end()
 
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
