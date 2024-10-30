@@ -1,11 +1,6 @@
 class_name PositionLock
 extends CameraControllerBase
 
-
-@export var box_width:float = 10.0
-@export var box_height:float = 10.0
-
-
 func _ready() -> void:
 	super()
 	position = target.position
@@ -17,9 +12,6 @@ func _process(delta: float) -> void:
 	
 	if draw_camera_logic:
 		draw_logic()
-	
-	var tpos = target.global_position
-	var cpos = global_position
 	
 	global_position = target.position
 		
@@ -41,13 +33,16 @@ func draw_logic() -> void:
 	
 	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 	immediate_mesh.surface_add_vertex(Vector3(2.5,0,0))
-	immediate_mesh.surface_add_vertex(Vector3(0,2.5,0))
+	immediate_mesh.surface_add_vertex(Vector3(-2.5,0,0))
 	
-	immediate_mesh.surface_add_vertex(Vector3(0,-2.5,0))
-	immediate_mesh.surface_add_vertex(Vector3(-2.5, 0, 0))
-	
+	immediate_mesh.surface_add_vertex(Vector3(0,0,2.5))
 	immediate_mesh.surface_add_vertex(Vector3(0,0,-2.5))
-	immediate_mesh.surface_add_vertex(Vector3(0, 0, 2.5))
+	
+	#immediate_mesh.surface_add_vertex(Vector3(0,-2.5,0))
+	#immediate_mesh.surface_add_vertex(Vector3(-2.5, 0, 0))
+	#
+	#immediate_mesh.surface_add_vertex(Vector3(0,0,-2.5))
+	#immediate_mesh.surface_add_vertex(Vector3(0, 0, 2.5))
 	
 	immediate_mesh.surface_end()
 
