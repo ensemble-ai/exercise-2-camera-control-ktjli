@@ -1,10 +1,10 @@
 class_name TargetFocus
 extends CameraControllerBase
 
-@export var lead_speed:float = 8
+@export var lead_speed:float = 3
 @export var catchup_delay_duration:float = 0.5
 @export var catchup_speed:float = 5
-@export var leash_distance:float = 10
+@export var leash_distance:float = 5
 
 var movement_timer: float = 0.0
 var is_moving: bool = false
