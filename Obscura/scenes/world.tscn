@@ -163,6 +163,8 @@ pushbox_top_left = Vector2(-10, 10)
 pushbox_bottom_right = Vector2(10, -10)
 speedup_zone_top_left = Vector2(-8, 8)
 speedup_zone_bottom_right = Vector2(8, -8)
+box_width = null
+box_height = null
 target = NodePath("../Vessel")
 
 [node name="debug" type="Label" parent="SpeedupCamera"]

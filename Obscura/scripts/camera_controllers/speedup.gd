@@ -7,8 +7,8 @@ extends CameraControllerBase
 @export var pushbox_bottom_right:Vector2
 @export var speedup_zone_top_left:Vector2
 @export var speedup_zone_bottom_right:Vector2
-@export var box_width:float = 10.0
-@export var box_height:float = 10.0
+@export var box_width:float = pushbox_top_left.x + pushbox_bottom_right.x
+@export var box_height:float = pushbox_top_left.y + pushbox_bottom_right.y
 
 func _ready() -> void:
 	super()
@@ -21,33 +21,33 @@ func _process(delta: float) -> void:
 	
 	if draw_camera_logic:
 		draw_logic()
+		
+	var diff_between_left_edges = (target.position.x - target.WIDTH / 2.0) - (position.x - box_width / 2.0)
+	if diff_between_left_edges < 0:
+		global_position.x += diff_between_left_edges
+	#right
+	var diff_between_right_edges = (target.position.x + target.WIDTH / 2.0) - (position.x + box_width / 2.0)
+	if diff_between_right_edges > 0:
+		global_position.x += diff_between_right_edges
+	#top
+	var diff_between_top_edges = (target.position.z - target.HEIGHT / 2.0) - (position.z - box_height / 2.0)
+	if diff_between_top_edges < 0:
+		global_position.z += diff_between_top_edges
+	#bottom
+	var diff_between_bottom_edges = (target.position.z + target.HEIGHT / 2.0) - (position.z + box_height / 2.0)
+	if diff_between_bottom_edges > 0:
+		global_position.z += diff_between_bottom_edges
 	
 	if target:
 		var target_velocity = target.velocity
 		var target_pos = target.position
-		
-		if target_pos.x > speedup_zone_top_left.x and target_pos.x < speedup_zone_bottom_right.x and target_pos.y > speedup_zone_top_left.y and target_pos.y < speedup_zone_bottom_right.y:
-			return
-		
-		var camera_movement = Vector2.ZERO
-		
+				
 		var touching_left = target_pos.x <= pushbox_top_left.x
 		var touching_right = target_pos.x >= pushbox_bottom_right.x
 		var touching_top = target_pos.y <= pushbox_top_left.y
 		var touching_bottom = target_pos.y >= pushbox_bottom_right.y
 		
-		if touching_left:
-			camera_movement.x = target_velocity.x * push_ratio
-		elif touching_right:
-			camera_movement.x = target_velocity.x
-		
-		if touching_top:
-			camera_movement.y = target_velocity.y * push_ratio
-		elif touching_bottom:
-			camera_movement.y = target_velocity.y
-		
-		camera_movement = target_velocity * push_ratio
-		position += camera_movement * delta
+		position = position.lerp(position, push_ratio * delta)
 
 	super(delta)
 
