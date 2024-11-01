@@ -1,7 +1,7 @@
 class_name LerpSmoothing
 extends CameraControllerBase
 
-@export var follow_speed:float = 3
+@export var follow_speed:float = 5
 @export var  catchup_speed:float = 5
 @export var leash_distance:float = 10
 
@@ -16,9 +16,9 @@ func _process(delta: float) -> void:
 	if draw_camera_logic:
 		draw_logic()
 
-	var distance_to_player = position.distance_to(target.position)
-	if distance_to_player > leash_distance:
+	if target.velocity == Vector3.ZERO:
 		position = position.lerp(target.position, catchup_speed * delta)
+	if position.distance_to(target.position) > leash_distance:
 		var direction = (target.position - position).normalized()
 		position = target.position - direction * leash_distance
 	else:
