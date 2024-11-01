@@ -2,7 +2,7 @@ class_name TargetFocus
 extends CameraControllerBase
 
 @export var lead_speed:float = 3
-@export var catchup_delay_duration:float = 0.5
+@export var catchup_delay_duration:float = 2
 @export var catchup_speed:float = 5
 @export var leash_distance:float = 5
 
@@ -31,19 +31,25 @@ func _process(delta: float) -> void:
 		is_moving = true
 		movement_timer = 0.0  # Reset timer on movement
 		var target_offset = input_direction.normalized() * leash_distance
-		position = tpos + target_offset
+		
+		position = position.lerp(position - target_offset, lead_speed * delta)
 	else:
 		is_moving = false
 		movement_timer += delta
 
 		if movement_timer >= catchup_delay_duration:
-			target.position = target.position.lerp(tpos, catchup_speed * delta)
+			position = position.lerp(tpos, catchup_speed * delta)
+			pass
+	if target.velocity == Vector3.ZERO:
+		position = position.lerp(target.position, catchup_speed * delta)
 
-	# Enforce leash distance
 	var distance_to_player = cpos.distance_to(tpos)
 	if distance_to_player > leash_distance:
 		var direction_to_player = (cpos - tpos).normalized()
-		#target.position = tpos + direction_to_player * leash_distance
+		if Vessel.HYPER_SPEED:
+			lead_speed = Vessel.HYPER_SPEED
+		else:
+			lead_speed = Vessel.BASE_SPEED
 
 	# Move the camera towards the target position
 	global_position = global_position.lerp(target.position, lead_speed * delta)
