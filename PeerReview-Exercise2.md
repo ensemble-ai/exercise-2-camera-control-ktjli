@@ -131,7 +131,33 @@ Please refer to the first code review template on how to do a permalink.
 
 #### Style Guide Infractions ####
 
+[Only one blank line](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/position_lock.gd#L3) - Only one blank line after class definition instead of two. 
+
+[No trailing zero](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/position_lock.gd#L29) - Trailing zero not used for 4 float variables inside draw logic function.
+
+[Line too long](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/horizontal_autoscroll.gd#L29) - Lines of code for calculating difference between vessel edge and box edge are too long. Should be formatted for better readability. 
+
+[Only one blank line](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/lerp_smoothing.gd#L3) - Only one blank line between functions instead of two. 
+
+[No trailing zero](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/lerp_smoothing.gd#L4) - No trailing zero for 4 export variables of type float. 
+
+[Only one blank line](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L15) - Only one blank line between functions instead of two.
+
+[No trailing zero](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L4) - No trailing zero for float variables. 
+
+[Lines too long](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L27) - Should format code for calculating input direction for better readability.
+
 #### Style Guide Exemplars ####
+
+[Proper indentation](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L36) - Proper indentation always used, especially in code that involves many nested if statements. Example from target focus included.
+
+[Correct amount of whitespace](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L44) - Whitespace around operators and commas always used, makes code very readable. Example from target focus included.
+
+[Class names](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L1) - Class names are always written in camelcase as they should be.
+
+[Variable/function names](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L5) - Variable and function names are always snake case.
+
+[Code order](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L1) - Code always ordered correctly, with class name first, then export variables, then regular variables, then functions. 
 
 ___
 #### Put style guide infractures ####
@@ -151,4 +177,46 @@ This should be similar to the Code Style justification.
 
 #### Best Practices Infractions ####
 
+[Box width/height variables in autoscroll](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/horizontal_autoscroll.gd#L5) - Variables for box width and height are calculated using top left and bottom right variables. First, as width and height are export variables, they should not have their value calculated directly in the code and should instead be assigned via inspector. Second, they use top left and bottom right even though these are declared after width and height.
+
+[Initialized variables not used](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/horizontal_autoscroll.gd#L29) - In autoscroll, the WIDTH and HEIGHT properties are used instead of the two variables for width and height that are declared in this class. Should not create variables if they are not going to be used.
+
+[Delta not used](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/horizontal_autoscroll.gd#L46) - To make camera scroll, autoscroll speed is added to the camera position. However, this is a speed vector and not a distance vector. Should be multiplying speed by delta to obtain a distance the camera should have moved since the last time process was called.
+
+[Export variables](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/lerp_smoothing.gd#L4) - Export variables assigned a value in the code instead of being controlled through inspector.
+
+[Export variables](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L4) - Export variables assigned a value in the code instead of being controlled through inspector.
+
+[Repeated code](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L43) - The code for making the camera catch up in target focus is repeated twice, once in the else statement and once outside. They seem to serve the same purpose, so only one is needed. 
+
+[If statement](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L49) - Vessel.HYPER_SPEED is used as the condition for the if statement. However, this is an integer value, and not a boolean. As such, this if statement will be executed every single time since Vessel.HYPER_SPEED will always exist. 
+
+[Unnecessary variable](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L31) - Variable is_moving is updated based on whether or not vessel is stopped. However, there doesn't seem to be a reason to keep track of this, and the variable is not used anywhere outside of this context. 
+
+[Potential place for a bug](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L30) - Comparing a vector of float values directly to the 3d zero vector may result in an error. Because float values are not exact, the vessel may still have a nonzero direction vector despite being stopped. 
+
+[Potential place for a bug](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L46) - Since the camera and the vessel are not located in the same y plane, using distance_to to calculate how far apart they are is dangerous. This may result in cases where distance_to returns a value that is not equal to leash distance even when within the x-z dimension the camera is at leash distance from the vessel. 
+
+[Changing export variable](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L50) - Lead speed is an export variable that controls how much the camera should be ahead of the vessel. This should always be constant and never change. Resetting the value of an export variable within the code may lead to bugs. 
+
+[Line outside of if statements](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L55) - This line is outside of all if statements, so it will be executed regardless of if the vessel is stopped or not. Additionally, there are already existing lerp statements within the if statements so this line is unnecessary.
+
+[Variable never used](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L48) - Vector variable for direction to vessel is created, but is never used after its creation.
+
+[Export variables](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/speedup.gd#L5) - Value of export variables set directly in code.
+
+[Variable not used](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/speedup.gd#L25) - Variables for width and height created, but properties WIDTH and HEIGHT used instead.
+
+[If statement](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/speedup.gd#L41) - Target reference variable used as an if statement condition, despite not being a boolean. This will cause this statement to always execute no matter what.
+
+[Unused variables](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/speedup.gd#L42) - 6 new variables are created within this if statement, none of them are used. Additionally, none of them are related to the speedup zone, which is what this part of the code should be responsible for.
+
 #### Best Practices Exemplars ####
+
+[Very succinct implementation](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/position_lock.gd#L16) - Implementation of stage 1 accomplished in one line, without creating unnecessary variables.
+
+[Good variable names](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/horizontal_autoscroll.gd#L29) - Variable names are very descriptive. Makes it so you always know what an if statement is doing. Especially important for stage 2, since it involves so many parts.
+
+[Good solution](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/target_focus.gd#L27) - Good use of get action strength to determine vessel direction.
+
+[Well formatted solution](https://github.com/ensemble-ai/exercise-2-camera-control-ktjli/blob/c5a05812accebb6fea2f1b6c7ea776d9ddb5978d/Obscura/scripts/camera_controllers/speedup.gd#L25) - Like how the code is formatted into four blocks, one for each edge. This makes the solution very easy to read and understand.
