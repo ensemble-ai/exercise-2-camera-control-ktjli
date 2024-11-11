@@ -24,6 +24,8 @@ func _process(_delta):
 			if null != cameras[index]:
 				if index == current_controller:
 					cameras[current_controller].make_current()
+					# "i added this line so i could test stage 4 and 5" -peer review grader
+					cameras[current_controller].global_position = %Vessel.position
 				else:
 					cameras[index].current = false
 					cameras[index].draw_camera_logic = false
